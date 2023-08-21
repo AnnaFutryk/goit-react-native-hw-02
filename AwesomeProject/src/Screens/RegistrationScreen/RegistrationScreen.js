@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -5,9 +6,23 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Text,
+  TextInput,
 } from "react-native";
 
 export const RegistrationScreen = () => {
+  const [isLoginFocused, setIsLoginFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  const addAvatar = (e) => {
+    e.preventDefault();
+  };
+
+  const showPassword = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <ImageBackground
       source={require("../../images/bg-photo.png")}
@@ -22,7 +37,48 @@ export const RegistrationScreen = () => {
             source={require("../../images/avatar.jpg")}
             style={styles.avatarImage}
           />
-          <TouchableOpacity></TouchableOpacity>
+          <TouchableOpacity style={styles.addButton} onPress={addAvatar}>
+            <Image
+              source={require("../../images/added.png")}
+              style={styles.addButtonIcon}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.registrationTitle}>Реєстрація</Text>
+        <View style={styles.formWrapper}>
+          <TextInput
+            style={[styles.input, isLoginFocused && styles.inputFocused]}
+            placeholder="Логін"
+            placeholderTextColor={"#BDBDBD"}
+            name="login"
+            onFocus={() => setIsLoginFocused(true)}
+            onBlur={() => setIsLoginFocused(false)}
+          />
+          <TextInput
+            style={[styles.input, isEmailFocused && styles.inputFocused]}
+            placeholderTextColor={"#BDBDBD"}
+            placeholder="Адреса електронної пошти"
+            name="email"
+            onFocus={() => setIsEmailFocused(true)}
+            onBlur={() => setIsEmailFocused(false)}
+          />
+          <View style={styles.lastInputWrapper}>
+            <TextInput
+              style={[styles.input, isPasswordFocused && styles.inputFocused]}
+              placeholderTextColor={"#BDBDBD"}
+              secureTextEntry={true}
+              placeholder="Пароль"
+              name="password"
+              onFocus={() => setIsPasswordFocused(true)}
+              onBlur={() => setIsPasswordFocused(false)}
+            ></TextInput>
+            <TouchableOpacity
+              style={styles.showPasswordButton}
+              onPress={showPassword}
+            >
+              <Text style={styles.showPasswordText}>Показати</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </KeyboardAvoidingView>
     </ImageBackground>
@@ -60,5 +116,56 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     width: 120,
     height: 120,
+  },
+  addButton: {
+    position: "absolute",
+    width: 44,
+    height: 44,
+    right: -24,
+    bottom: 7,
+  },
+  addButtonIcon: {
+    width: 44,
+    height: 44,
+  },
+  registrationTitle: {
+    fontFamily: "Roboto-Medium",
+    fontSize: 30,
+    lineHeight: 35,
+    textAlign: "center",
+    marginBottom: 32,
+  },
+  formContainer: {
+    position: "relative",
+  },
+  input: {
+    color: "#BDBDBD",
+    backgroundColor: "#F6F6F6",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "#E8E8E8",
+    borderRadius: 8,
+    padding: 16,
+    fontFamily: "Roboto-Regular",
+    fontSize: 16,
+    marginBottom: 16,
+  },
+  inputFocused: {
+    borderColor: "#FF6C00",
+    backgroundColor: "#fff",
+    color: "#000",
+  },
+  showPasswordButton: {
+    fontSize: 16,
+  },
+  lastInputWrapper: {
+    position: "relative",
+  },
+
+  showPasswordText: {
+    position: "absolute",
+    top: -51,
+    right: 16,
+    color: "#1B4371",
   },
 });
