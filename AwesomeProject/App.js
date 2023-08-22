@@ -1,5 +1,7 @@
 import { useFonts } from "expo-font";
 import { StyleSheet, View } from "react-native";
+import { LoginScreen } from "./src/Screens/LoginScreen/LoginScreen";
+import { PostsScreen } from "./src/Screens/PostsScreen/PostsScreen";
 import { RegistrationScreen } from "./src/Screens/RegistrationScreen/RegistrationScreen";
 
 export default function App() {
@@ -16,6 +18,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <RegistrationScreen />
+      {/* <LoginScreen /> */}
+      {/* <PostsScreen /> */}
     </View>
   );
 }

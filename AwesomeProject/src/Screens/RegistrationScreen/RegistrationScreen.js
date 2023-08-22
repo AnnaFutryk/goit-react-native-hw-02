@@ -23,6 +23,10 @@ export const RegistrationScreen = () => {
     e.preventDefault();
   };
 
+  const signUp = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <ImageBackground
       source={require("../../images/bg-photo.png")}
@@ -31,7 +35,7 @@ export const RegistrationScreen = () => {
         minHeight: 812,
       }}
     >
-      <KeyboardAvoidingView style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={styles.avatar}>
           <Image
             source={require("../../images/avatar.jpg")}
@@ -81,6 +85,14 @@ export const RegistrationScreen = () => {
           </View>
         </View>
       </KeyboardAvoidingView>
+      <View style={styles.BtnWrap}>
+        <TouchableOpacity style={styles.registrationButton} onPress={signUp}>
+          <Text style={styles.registrationButtonText}>Зареєструватися</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.registrationLinkText}>Вже є акаунт? Увійти</Text>
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };
@@ -100,6 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
+    padding: 32,
   },
   avatar: {
     position: "relative",
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     width: 120,
     aspectRatio: 1,
-    marginTop: -60,
+    marginTop: "-25%",
     marginLeft: "auto",
     marginRight: "auto",
   },
@@ -135,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 32,
   },
-  formContainer: {
+  formWrapper: {
     position: "relative",
   },
   input: {
@@ -161,11 +174,37 @@ const styles = StyleSheet.create({
   lastInputWrapper: {
     position: "relative",
   },
-
   showPasswordText: {
     position: "absolute",
     top: -51,
     right: 16,
+    color: "#1B4371",
+  },
+  BtnWrap: {
+    position: "absolute",
+    width: "100%",
+    bottom: 45 + 34,
+    // top: 604 + 44,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginTop: 43,
+  },
+  registrationButton: {
+    backgroundColor: "#FF6C00",
+    borderRadius: 100,
+    width: "100%",
+    padding: 16,
+    marginTop: 27,
+    marginBottom: 16,
+  },
+  registrationButtonText: {
+    textAlign: "center",
+    color: "#fff",
+    fontSize: 16,
+  },
+  registrationLinkText: {
+    textAlign: "center",
+    fontSize: 16,
     color: "#1B4371",
   },
 });
